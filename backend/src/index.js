@@ -79,13 +79,19 @@ app.delete('/tasks/:id', async (req, res) => {
 async function start() {
   try {
     await initDB();
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    const server = app.listen(PORT, () =>
+      console.log(`Server running on port ${PORT}`)
+    );
+    return server;
   } catch (err) {
     console.error('Failed to start:', err.message);
     process.exit(1);
   }
 }
 
-start();
+// 🚨 Only start server if NOT in test environment
+if (process.env.NODE_ENV !== 'test') {
+  start();
+}
 
-module.exports = app;
+module.exports = { app, start };

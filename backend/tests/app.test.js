@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../src/index');
+const { app } = require('../src/index');
 
 // Mock the DB module so tests don't need a real MySQL connection
 jest.mock('../src/db', () => ({
