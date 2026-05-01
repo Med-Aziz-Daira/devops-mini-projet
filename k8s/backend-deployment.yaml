@@ -20,6 +20,7 @@ spec:
       containers:
         - name: backend
           image: medaziz333/taskmanager-backend:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
           env:
